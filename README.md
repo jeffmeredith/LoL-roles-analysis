@@ -60,3 +60,25 @@ This pivot table shows K/D Ratio difference between Red and Blue for each positi
 
 ## Assessment of Missingness
 
+### NMAR Analysis
+
+For my NMAR analysis, my goal is to evaluate whether the `'towers'` column is Not Missing At Random. Thinking about the data collection process, I examined the rows of the original dataset where `'towers'` was missing and found that if `'towers'` was missing from one row of a certain game, it was almost always missing from the other rows with that same `'gameid'` as well, except for the rows with team summary stats. This tells me that there were entire games where individual players' towers were not kept track of, which tells me that the missingness doesn't actually depend on the number of towers taken itself, but rather depends on some factors that relate to the match as a whole, whether that be the popularity of the match or which league it took place in. To conclude, because the missingness of `'towers'` does not seem to be dependent on the missing value itself, I can say that `'towers'` is not NMAR.
+
+### Missingness Dependency
+
+The goal of this section was to find what other columns had an effect on the missingness of `'damagetochampions_diff'`. After some permutation tests, it was found that `'damagetochampions_diff'` was **Missing At Random (MAR)** dependent on both `'teamname'` and `'league'`.
+
+First, a permutation test using the Total Variation Distance (TVD) was done to evaluate whether the distribution of `'teamname'` was truly different for when `'damagetochampions_diff'` was missing and when it was not missing. The results as well as the distribution of simulated TVDs from the permutation test and the observed TVD can be seen below.
+
+Observed TVD: **0.499237**
+P-Value: **0.0**
+
+
+
+Second, a permutation test was done to evaluate whether the distribution of `'league'` was truly different depending on whether `'damagetochampions_diff'` was missing. The results of the permutation test as well as the distribution of simulated TVDs can be seen below.
+
+Observed TVD: **0.462206**
+P-Value: **0.026**
+
+
+
