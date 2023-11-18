@@ -82,3 +82,20 @@ P-Value: **0.026**
 
 
 
+## Hypothesis Testing
+
+**Null Hypothesis:** The proportion of games where the bot lane with more damage won is the same as the proportion of games where any other position that had more damage won.
+
+**Alternative Hypothesis:** The proportion of games where the bot lane with more damage won is greater than the proportion of games where any other position that had more damage won.
+
+**Test Statistic:** Difference between proportion of games where bot was leading in damage and won and proportion of games where any other role was leading and won
+
+**Significance Level:** 5%
+
+Below, you can see the results of the permutation test, which was done by shuffling the `'winner'` column to create equal proportions of games won for both bot lane and the other roles when ahead in damage, which is how I simulated the null hypothesis. The simulation was repeated 1,000 times.
+
+Observed Test Statistic: **0.054719**
+P-Value: **0.0**
+
+**Conclusion:** We reject the null hypothesis. This means that there is evidence that the proportion of games where the bot lane with more damage won is greater than the proportion of games where any other position that had more damage won. This suggests that bot lane might be the most impactful role on the outcome of a LoL game.
+
