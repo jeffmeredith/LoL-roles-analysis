@@ -93,6 +93,9 @@ P-Value: **0.026**
 
 <iframe src="assets/league-missing-test.html" width=800 height=600 frameBorder=0></iframe>
 
+**Interpretation:** Since both p-values were less than 5%, we can say that there is evidence that the distributions of both `'teamname'` and `'league'` were different for when `'damagetochampions_diff'` is missing and when it is not missing. This suggests that the missingness of Champion Damage difference is dependent on those other two columns.
+
+
 ## Hypothesis Testing
 
 **Null Hypothesis:** The proportion of games where the bot lane with more damage won is the same as the proportion of games where any other position that had more damage won.
