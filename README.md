@@ -36,25 +36,36 @@ Next, the resulting dataframe was split into two dataframes; one contained data 
 
 **Here is the head of my `cleaned_df`**
 
+| gameid                | league   | teamname                      | position   |   gamelength | winner   |   kd_diff |   kills_diff |   deaths_diff |   assists_diff |   damagetochampions_diff |   gold_diff |   vision_diff |
+|:----------------------|:---------|:------------------------------|:-----------|-------------:|:---------|----------:|-------------:|--------------:|---------------:|-------------------------:|------------:|--------------:|
+| ESPORTSTMNT01_2690210 | LCKC     | Nongshim RedForce Challengers | top        |         1713 | Red      |  0.333333 |           -1 |            -2 |             10 |                     1687 |        -933 |             4 |
+| ESPORTSTMNT01_2690210 | LCKC     | Nongshim RedForce Challengers | jng        |         1713 | Red      |  3.6      |            2 |            -4 |              4 |                    -1201 |        1155 |            -9 |
+| ESPORTSTMNT01_2690210 | LCKC     | Nongshim RedForce Challengers | mid        |         1713 | Red      |  1        |            4 |             1 |              9 |                     6432 |        1817 |             0 |
+| ESPORTSTMNT01_2690210 | LCKC     | Nongshim RedForce Challengers | bot        |         1713 | Red      |  3.5      |            6 |            -2 |              8 |                    15581 |        3413 |            15 |
+| ESPORTSTMNT01_2690210 | LCKC     | Nongshim RedForce Challengers | sup        |         1713 | Red      | -0.2      |           -1 |            -3 |             12 |                      853 |          95 |            -2 |
+
 ### Univariate Analysis:
 
-
+<iframe src="assets/champdmg-hist.html" width=800 height=600 frameBorder=0></iframe>
 
 This is a stacked histogram showing the distribution of Champion Damage differences between Red and Blue side for each position. I notice that the distribution is close to being normal in shape. I also notice that the two positions with the greatest variation in damage difference are bot and mid.
 
 ### Bivariate Analysis:
 
-
+<iframe src="assets/kd-diff-violin.html" width=800 height=600 frameBorder=0></iframe>
 
 This is a multiple violin plot showing the distributions of K/D Ratio differences between Red and Blue for games where Red won and games where Blue won. As expected, when Red wins, the K/D Ratio difference tends to be positive and when Blue wins, it tends to be more negative. The position with the most positive K/D diff when Red wins and the most negative K/D diff when Blue wins, however, is bot lane with a median of 3 when Red wins and a median of -3 when Blue wins.
 
-
+<iframe src="assets/gold-diff-violin.html" width=800 height=600 frameBorder=0></iframe>
 
 This is a multiple box plot showing the distributions of gold income differences between Red and Blue for games where Red won and games where Blue won. Once again, it can be seen that bot lane has the most positive median gold difference (2579) when Red wins and also has the most negative median gold difference (-2602) when Blue wins.
 
 ### Interesting Aggregates:
 
-
+| winner   |      bot |      jng |      mid |       sup |      top |
+|:---------|---------:|---------:|---------:|----------:|---------:|
+| Blue     | -3.29655 | -2.08998 | -2.54436 | -0.516813 | -1.94146 |
+| Red      |  3.37442 |  1.98933 |  2.55195 |  0.483613 |  1.8846  |
 
 This pivot table shows K/D Ratio difference between Red and Blue for each position for when Red won and when Blue won. It can be seen that the positions with the greatest differences when their side wins are bot lane and mid lane, followed by jungle and top lane, and, lastly, support.
 
@@ -73,14 +84,14 @@ First, a permutation test using the Total Variation Distance (TVD) was done to e
 Observed TVD: **0.499237**
 P-Value: **0.0**
 
-
+<iframe src="assets/team-missing-test.html" width=800 height=600 frameBorder=0></iframe>
 
 Second, a permutation test was done to evaluate whether the distribution of `'league'` was truly different depending on whether `'damagetochampions_diff'` was missing. The results of the permutation test as well as the distribution of simulated TVDs can be seen below.
 
 Observed TVD: **0.462206**
 P-Value: **0.026**
 
-
+<iframe src="assets/league-missing-test.html" width=800 height=600 frameBorder=0></iframe>
 
 ## Hypothesis Testing
 
@@ -99,3 +110,4 @@ P-Value: **0.0**
 
 **Conclusion:** We reject the null hypothesis. This means that there is evidence that the proportion of games where the bot lane with more damage won is greater than the proportion of games where any other position that had more damage won. This suggests that bot lane might be the most impactful role on the outcome of a LoL game.
 
+<iframe src="assets/hypothesis-test.html" width=800 height=600 frameBorder=0></iframe>
